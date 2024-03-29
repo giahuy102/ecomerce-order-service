@@ -2,6 +2,7 @@ package com.ecomerce.ms.service.order.domain.aggregate.cart;
 
 import com.ecomerce.ms.service.order.domain.shared.BaseLocalEntity;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Getter
+@Setter
 @Table(name = "cart_items")
 @Entity
 public class CartItem extends BaseLocalEntity<UUID> {
