@@ -1,7 +1,7 @@
 package com.ecomerce.ms.service.order.domain.aggregate.cart;
 
-import com.ecomerce.ms.service.order.domain.external.product.Product;
-import com.ecomerce.ms.service.order.domain.external.product.ProductGateway;
+import com.ecomerce.ms.service.order.domain.shared.external.product.Product;
+import com.ecomerce.ms.service.order.domain.shared.external.product.ProductGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -16,19 +16,19 @@ public class CartFactory {
 
     private final ProductGateway productGateway;
 
-    public Cart createFrom(UUID customerId, List<CartItem> items) {
-        List<UUID> productIds = items.stream()
+    public Cart createFrom(UUID customerId, List<CartItem> cartItems) {
+        List<UUID> productIds = cartItems.stream()
                 .map(CartItem::getId)
                 .collect(Collectors.toList());
         List<Product> products = productGateway.getProducts(productIds);
-        IntStream.range(0, items.size())
+        IntStream.range(0, cartItems.size())
                 .forEach(idx -> {
                     Double productPrice = products.get(idx).getPrice();
-                    items.get(idx).setPrice(productPrice);
+                    cartItems.get(idx).setPrice(productPrice);
                 });
         return Cart.builder()
                 .customerId(customerId)
-                .items(items)
+                .items(cartItems)
                 .build();
     }
 }

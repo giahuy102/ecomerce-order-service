@@ -1,4 +1,4 @@
-package com.ecomerce.ms.service.order.domain.external.product;
+package com.ecomerce.ms.service.order.domain.shared.external.product;
 
 import lombok.Getter;
 

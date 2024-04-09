@@ -1,6 +1,6 @@
 package com.ecomerce.ms.service.order.domain.aggregate.cart;
 
-import com.ecomerce.ms.service.order.domain.shared.BaseLocalEntity;
+import com.huyle.ms.domain.LocalEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +17,7 @@ import java.util.UUID;
 @Setter
 @Table(name = "cart_items")
 @Entity
-public class CartItem extends BaseLocalEntity<UUID> {
+public class CartItem extends LocalEntity<UUID> {
     @NotNull
     @Column(name = "product_id")
     private UUID productId;

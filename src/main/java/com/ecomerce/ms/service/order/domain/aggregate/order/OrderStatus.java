@@ -1,6 +1,6 @@
 package com.ecomerce.ms.service.order.domain.aggregate.order;
 
-import com.ecomerce.ms.service.order.domain.shared.BaseLocalEntity;
+import com.huyle.ms.domain.LocalEntity;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Table(name = "order_statuses")
 @Entity
-public class OrderStatus extends BaseLocalEntity<Integer> {
+public class OrderStatus extends LocalEntity<Integer> {
     @NotNull
     @Size(max = 255)
     @Column(name = "status_name")

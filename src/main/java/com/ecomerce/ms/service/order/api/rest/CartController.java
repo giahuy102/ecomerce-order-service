@@ -1,7 +1,7 @@
 package com.ecomerce.ms.service.order.api.rest;
 
 import com.ecomerce.ms.service.order.api.rest.model.CreateCartRequest;
-import com.ecomerce.ms.service.order.application.command.CommandGateway;
+import com.huyle.ms.command.CommandGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

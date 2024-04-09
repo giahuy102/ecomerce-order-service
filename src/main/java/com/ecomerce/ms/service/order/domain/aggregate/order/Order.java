@@ -1,6 +1,6 @@
 package com.ecomerce.ms.service.order.domain.aggregate.order;
 
-import com.ecomerce.ms.service.order.domain.shared.BaseAggregateRoot;
+import com.huyle.ms.domain.AggregateRoot;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @Getter
 @Table(name = "orders")
 @Entity
-public class Order extends BaseAggregateRoot<UUID> {
+public class Order extends AggregateRoot<UUID> {
     @NotNull
     @Column(name = "customer_id")
     private UUID customerId;

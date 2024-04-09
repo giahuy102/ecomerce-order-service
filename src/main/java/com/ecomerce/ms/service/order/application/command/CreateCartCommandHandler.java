@@ -1,8 +1,10 @@
 package com.ecomerce.ms.service.order.application.command;
 
 import com.ecomerce.ms.service.order.domain.aggregate.cart.Cart;
+import com.ecomerce.ms.service.order.domain.aggregate.cart.CartCreatedEvent;
 import com.ecomerce.ms.service.order.domain.aggregate.cart.CartFactory;
 import com.ecomerce.ms.service.order.domain.aggregate.cart.CartRepository;
+import com.huyle.ms.command.CommandHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +31,7 @@ public class CreateCartCommandHandler implements CommandHandler<CreateCartComman
 
          */
         Cart cart = cartFactory.createFrom(createCartCommand.getCustomerId(), createCartCommand.getCartItems());
+        cart.registerEvent(new CartCreatedEvent(cart));
         cartRepository.save(cart);
-
     }
 }

@@ -1,6 +1,7 @@
 package com.ecomerce.ms.service.order.application.command;
 
 import com.ecomerce.ms.service.order.domain.aggregate.cart.CartItem;
+import com.huyle.ms.command.Command;
 import lombok.Getter;
 
 import java.util.List;

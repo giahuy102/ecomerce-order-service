@@ -1,6 +1,6 @@
 package com.ecomerce.ms.service.order.domain.aggregate.cart;
 
-import com.ecomerce.ms.service.order.domain.shared.BaseAggregateRoot;
+import com.huyle.ms.domain.AggregateRoot;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @Builder
 @Table(name = "carts")
 @Entity
-public class Cart extends BaseAggregateRoot<UUID> {
+public class Cart extends AggregateRoot<UUID> {
     @NotNull
     @Column(name = "customer_id")
     private UUID customerId;
