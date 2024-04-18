@@ -1,7 +1,9 @@
 package com.ecomerce.ms.service.order.domain.aggregate.order;
 
 import com.huyle.ms.domain.AggregateRoot;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +23,7 @@ import java.util.UUID;
 @Getter
 @Table(name = "orders")
 @Entity
+@Builder
 public class Order extends AggregateRoot<UUID> {
     @NotNull
     @Column(name = "customer_id")
@@ -39,5 +42,6 @@ public class Order extends AggregateRoot<UUID> {
     private Date orderDeliveredCustomerDate;
 
     @OneToMany(mappedBy = "order")
+    @Setter
     private List<OrderItem> orderItems = new ArrayList<>();
 }

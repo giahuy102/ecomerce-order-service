@@ -1,6 +1,7 @@
 package com.ecomerce.ms.service.order.domain.aggregate.cart;
 
 import com.huyle.ms.domain.LocalEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 @Setter
 @Table(name = "cart_items")
 @Entity
+@Builder
 public class CartItem extends LocalEntity<UUID> {
     @NotNull
     @Column(name = "product_id")

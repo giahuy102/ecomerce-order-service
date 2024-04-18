@@ -31,7 +31,9 @@ public class CreateCartCommandHandler implements CommandHandler<CreateCartComman
 
          */
         Cart cart = cartFactory.createFrom(createCartCommand.getCustomerId(), createCartCommand.getCartItems());
-        cart.registerEvent(new CartCreatedEvent(cart));
+        cart.registerEvent(CartCreatedEvent.builder()
+                .cart(cart)
+                .build());
         cartRepository.save(cart);
     }
 }

@@ -1,6 +1,7 @@
 package com.ecomerce.ms.service.order.domain.aggregate.order;
 
 import com.huyle.ms.domain.LocalEntity;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Table(name = "order_items")
 @Entity
+@Builder
 public class OrderItem extends LocalEntity<UUID> {
     @NotNull
     @Column(name = "product_id")

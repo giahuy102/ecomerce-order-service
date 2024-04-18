@@ -5,6 +5,8 @@ import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -17,8 +19,9 @@ import java.util.UUID;
 public class OrderStatus extends LocalEntity<Integer> {
     @NotNull
     @Size(max = 255)
-    @Column(name = "status_name")
-    private String statusName;
+    @Column(name = "status_name", unique = true)
+    @Enumerated(EnumType.STRING)
+    private OrderStatusName statusName;
 
     @NotNull
     @Size(min = 7, max = 7)
