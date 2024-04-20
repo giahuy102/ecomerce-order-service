@@ -2,3 +2,6 @@
 + Each KafkaTemplate in each config????
 
 https://www.baeldung.com/spring-webclient-simultaneous-calls
+
+https://thepracticaldeveloper.com/spring-boot-kafka-config/
+https://medium.com/@jamshidsadiqi25/kafka-configuration-spring-boot-6d5cd22f373d

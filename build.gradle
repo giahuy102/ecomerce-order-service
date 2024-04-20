@@ -1,21 +1,28 @@
+import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
+
 buildscript {
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.18")
+		classpath('com.github.davidmc24.gradle.plugin:gradle-avro-plugin:1.9.1')
 	}
 }
 
 repositories {
 	mavenLocal()
 	mavenCentral()
+	maven {
+		url "https://packages.confluent.io/maven"
+	}
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'maven-publish'
+apply plugin: 'com.github.davidmc24.gradle.plugin.avro-base'
 
 group = 'com.ecomerce.ms.service.order'
 version = '1.0.0-SNAPSHOT'
@@ -34,8 +41,25 @@ ext {
 	mapstructVersion = "1.5.5.Final"
 }
 
-dependencies {
+avro {
+	stringType = 'CharSequence'
+	outputCharacterEncoding = 'UTF-8'
+}
 
+def generateAvro = tasks.register("generateAvro", GenerateAvroJavaTask) {
+	source("src/main/resources/avro")
+	outputDir = file("build/generated/avro")
+}
+
+tasks.named("compileJava").configure {
+	source(generateAvro)
+}
+
+tasks.named("compileTestJava").configure {
+	source(generateAvro)
+}
+
+dependencies {
 	annotationProcessor('org.projectlombok:lombok')
 	compileOnly('org.projectlombok:lombok')
 
@@ -55,7 +79,10 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('org.springframework.boot:spring-boot-starter-webflux')
 //	implementation('org.flywaydb:flyway-core')
-	// implementation('org.springframework.kafka:spring-kafka')
+	implementation('org.springframework.kafka:spring-kafka')
+	implementation('org.apache.avro:avro:1.11.3')
+	implementation('io.confluent:kafka-avro-serializer:7.6.0')
+//	implementation('org.apache.kafka:kafka-clients:3.7.0')
 	implementation('com.huyle:lib-domain-driven:1.0.0-SNAPSHOT')
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
