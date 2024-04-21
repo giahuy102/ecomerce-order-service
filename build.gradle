@@ -1,5 +1,3 @@
-import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
-
 buildscript {
 	repositories {
 		mavenCentral()
@@ -22,7 +20,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'maven-publish'
-apply plugin: 'com.github.davidmc24.gradle.plugin.avro-base'
+apply plugin: 'com.github.davidmc24.gradle.plugin.avro'
 
 group = 'com.ecomerce.ms.service.order'
 version = '1.0.0-SNAPSHOT'
@@ -44,19 +42,6 @@ ext {
 avro {
 	stringType = 'CharSequence'
 	outputCharacterEncoding = 'UTF-8'
-}
-
-def generateAvro = tasks.register("generateAvro", GenerateAvroJavaTask) {
-	source("src/main/resources/avro")
-	outputDir = file("build/generated/avro")
-}
-
-tasks.named("compileJava").configure {
-	source(generateAvro)
-}
-
-tasks.named("compileTestJava").configure {
-	source(generateAvro)
 }
 
 dependencies {

@@ -2,6 +2,6 @@
 protocol Metadatas {
 	record Metadata {
 		@logicalType("timestamp_ms")
-		long eventTime;
+		long submitTime;
 	}
 }

@@ -9,7 +9,8 @@ import lombok.Getter;
 public class OrderCreatedEvent extends DomainEvent {
     private Order order;
 
-    public OrderCreatedEvent() {
+    public OrderCreatedEvent(Order order) {
         super();
+        this.order = order;
     }
 }

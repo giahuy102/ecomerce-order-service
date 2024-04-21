@@ -10,7 +10,8 @@ public class CartCreatedEvent extends DomainEvent {
 
     private Cart cart;
 
-    public CartCreatedEvent() {
+    public CartCreatedEvent(Cart cart) {
         super();
+        this.cart = cart;
     }
 }
