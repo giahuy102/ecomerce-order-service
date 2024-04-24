@@ -2,32 +2,13 @@
 protocol Orders {
 	import idl "Metadatas.avdl";
 
-	record OrderItem {
-		@logicalType("UUID")
-		string id;
-
-		@logicalType("UUID")
-		string productId;
-
-		double price;
-		int quantity;
-	}
-
-	record Order {
-		@logicalType("UUID")
-		string id;
-
-		@logicalType("UUID")
-		string customerId;
-
-		string orderStatus;
-
-		array<OrderItem> items;
-
-	}
-
 	record OrderCreatedEvent {
 		Metadata metadata;
-		Order order;
+
+		@logicalType("uuid")
+		string orderId;
+
+		@logicalType("uuid")
+		string customerId;
 	}
 }

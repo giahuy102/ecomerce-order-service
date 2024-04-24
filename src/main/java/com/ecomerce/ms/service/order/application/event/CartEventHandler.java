@@ -1,8 +1,8 @@
 package com.ecomerce.ms.service.order.application.event;
 
-import com.ecomerce.ms.service.order.domain.aggregate.cart.CartCreatedEvent;
+import com.ecomerce.ms.service.order.domain.aggregate.cart.CartCreated;
 import com.ecomerce.ms.service.order.domain.aggregate.order.Order;
-import com.ecomerce.ms.service.order.domain.aggregate.order.OrderCreatedEvent;
+import com.ecomerce.ms.service.order.domain.aggregate.order.OrderCreated;
 import com.ecomerce.ms.service.order.domain.aggregate.order.OrderRepository;
 import com.ecomerce.ms.service.order.domain.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +17,9 @@ public class CartEventHandler {
     private final OrderRepository orderRepository;
 
     @EventListener
-    void onCartCreatedEvent(CartCreatedEvent event) {
+    void onCartCreatedEvent(CartCreated event) {
         Order newOrder = orderService.convertCartToOrder(event.getCart());
-        newOrder.registerEvent(OrderCreatedEvent.builder()
+        newOrder.registerEvent(OrderCreated.builder()
                 .order(newOrder)
                 .build());
         orderRepository.save(newOrder);

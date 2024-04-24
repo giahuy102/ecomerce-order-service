@@ -6,11 +6,11 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class CartCreatedEvent extends DomainEvent {
+public class CartCreated extends DomainEvent {
 
     private Cart cart;
 
-    public CartCreatedEvent(Cart cart) {
+    public CartCreated(Cart cart) {
         super();
         this.cart = cart;
     }

@@ -7,3 +7,5 @@ https://thepracticaldeveloper.com/spring-boot-kafka-config/
 https://medium.com/@jamshidsadiqi25/kafka-configuration-spring-boot-6d5cd22f373d
 
 https://viblo.asia/p/004-apache-kafka-consumer-offset-broker-discovery-va-zookeeper-GrLZDRe25k0
+
+https://medium.com/@barbieri.santiago/building-a-kafka-producer-with-spring-boot-and-spring-kafka-db82595c05d6

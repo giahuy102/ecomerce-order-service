@@ -6,10 +6,10 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class OrderCreatedEvent extends DomainEvent {
+public class OrderCreated extends DomainEvent {
     private Order order;
 
-    public OrderCreatedEvent(Order order) {
+    public OrderCreated(Order order) {
         super();
         this.order = order;
     }
