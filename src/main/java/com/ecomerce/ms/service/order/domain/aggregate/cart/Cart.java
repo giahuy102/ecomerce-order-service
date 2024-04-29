@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-@Table(name = "carts")
+@Table(name = "carts", schema = "order_service")
 @Entity
 public class Cart extends AggregateRoot<UUID> {
     @NotNull

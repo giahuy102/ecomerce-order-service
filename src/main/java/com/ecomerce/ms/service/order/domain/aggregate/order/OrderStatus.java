@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Getter
-@Table(name = "order_statuses")
+@Table(name = "order_statuses", schema = "order_service")
 @Entity
 public class OrderStatus extends LocalEntity<Integer> {
     @NotNull

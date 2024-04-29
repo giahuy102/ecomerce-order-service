@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-@Table(name = "orders")
+@Table(name = "orders", schema = "order_service")
 @Entity
 @Builder
 public class Order extends AggregateRoot<UUID> {
@@ -30,7 +30,7 @@ public class Order extends AggregateRoot<UUID> {
     private UUID customerId;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_status")
+    @JoinColumn(name = "order_status_id")
     private OrderStatus orderStatus;
 
     @Temporal(TemporalType.DATE)

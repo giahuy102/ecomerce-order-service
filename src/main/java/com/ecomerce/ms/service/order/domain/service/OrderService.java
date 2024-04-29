@@ -8,12 +8,14 @@ import com.ecomerce.ms.service.order.domain.aggregate.order.OrderStatus;
 import com.ecomerce.ms.service.order.domain.aggregate.order.OrderStatusRepository;
 import com.huyle.ms.domain.DomainException;
 import com.huyle.ms.domain.DomainService;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.ecomerce.ms.service.order.domain.aggregate.order.OrderStatusName.OPEN;
 
+@Component
 public class OrderService implements DomainService {
 
     OrderStatusRepository orderStatusRepository;

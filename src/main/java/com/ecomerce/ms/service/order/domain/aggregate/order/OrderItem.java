@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Getter
-@Table(name = "order_items")
+@Table(name = "order_items", schema = "order_service")
 @Entity
 @Builder
 public class OrderItem extends LocalEntity<UUID> {
