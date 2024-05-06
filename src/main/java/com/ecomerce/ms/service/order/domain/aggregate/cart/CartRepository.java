@@ -1,10 +1,5 @@
 package com.ecomerce.ms.service.order.domain.aggregate.cart;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import java.util.UUID;
-
-@Repository
-public interface CartRepository extends JpaRepository<Cart, UUID> {
+public interface CartRepository {
+    public Cart save(Cart cart);
 }

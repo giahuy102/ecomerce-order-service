@@ -2,7 +2,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /order
+    context-path: /order-service
 
 spring:
   datasource:
@@ -31,8 +31,12 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     producer:
-      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+    properties:
+      schema:
+        registry:
+          url: http://localhost:8087
 
 logging:
   level:

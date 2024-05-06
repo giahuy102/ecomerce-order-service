@@ -18,18 +18,6 @@ public class CreateCartCommandHandler implements CommandHandler<CreateCartComman
 
     @Transactional
     public void handle(CreateCartCommand createCartCommand) {
-        /*
-            Where to put entity in another bounded context (microservice)?????
-            What is passed to CartFactory?
-            How WebClient is called?
-            Call from Service or gateway? If from service, where to put service?
-                Each method in gateway is implemented in infra layer
-                Gateway only calls external service
-                Service use gateway + include business logic
-            Kafka publisher and subscriber?
-            Mono and Flux in WebClient reactive programming?
-
-         */
         Cart cart = cartFactory.createFrom(createCartCommand.getCustomerId(), createCartCommand.getCartItems());
         cart.registerEvent(CartCreated.builder()
                 .cart(cart)

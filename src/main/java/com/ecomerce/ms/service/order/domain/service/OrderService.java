@@ -8,6 +8,7 @@ import com.ecomerce.ms.service.order.domain.aggregate.order.OrderStatus;
 import com.ecomerce.ms.service.order.domain.aggregate.order.OrderStatusRepository;
 import com.huyle.ms.domain.DomainException;
 import com.huyle.ms.domain.DomainService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,12 +16,15 @@ import java.util.stream.Collectors;
 
 import static com.ecomerce.ms.service.order.domain.aggregate.order.OrderStatusName.OPEN;
 
+@RequiredArgsConstructor
 @Component
 public class OrderService implements DomainService {
 
-    OrderStatusRepository orderStatusRepository;
+    private final OrderStatusRepository orderStatusRepository;
 
     public Order convertCartToOrder(Cart cart) {
+        System.out.println("====================");
+        System.out.println(cart.getItems().get(0).getPrice());
         OrderStatus openStatus = orderStatusRepository.findByStatusName(OPEN)
                 .orElseThrow(() -> new DomainException("OPEN status not found"));
 

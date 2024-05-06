@@ -3,6 +3,7 @@ package com.ecomerce.ms.service.order.domain.aggregate.order;
 import com.huyle.ms.domain.LocalEntity;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Getter
+@Setter
 @Table(name = "order_items", schema = "order_service")
 @Entity
 @Builder

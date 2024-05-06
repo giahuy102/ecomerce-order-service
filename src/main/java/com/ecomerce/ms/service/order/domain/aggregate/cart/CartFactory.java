@@ -18,12 +18,12 @@ public class CartFactory {
 
     public Cart createFrom(UUID customerId, List<CartItem> cartItems) {
         List<UUID> productIds = cartItems.stream()
-                .map(CartItem::getId)
+                .map(CartItem::getProductId)
                 .collect(Collectors.toList());
         List<Product> products = productGateway.getProducts(productIds);
         IntStream.range(0, cartItems.size())
                 .forEach(idx -> {
-                    Double productPrice = products.get(idx).getPrice();
+                    Double productPrice = products.get(idx).getPriceUnit();
                     cartItems.get(idx).setPrice(productPrice);
                 });
         return Cart.builder()

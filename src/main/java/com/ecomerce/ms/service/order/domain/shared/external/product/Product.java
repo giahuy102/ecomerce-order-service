@@ -7,5 +7,6 @@ import java.util.UUID;
 @Getter
 public class Product {
     private UUID productId;
-    private Double price;
+    private Double priceUnit;
+    private Integer quantity;
 }

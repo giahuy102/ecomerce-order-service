@@ -1,5 +1,5 @@
 CREATE TABLE order_statuses (
-    id UUID,
+    id INTEGER,
     status_name VARCHAR(255) UNIQUE NOT NULL,
     color CHAR(7) UNIQUE NOT NULL,
     created_by_staff_id UUID,
@@ -12,7 +12,7 @@ CREATE TABLE order_statuses (
 CREATE TABLE orders (
     id UUID,
     customer_id UUID,
-    order_status_id UUID,
+    order_status_id INTEGER,
     order_approved_at DATE,
     order_delivered_customer_date DATE,
     created_at TIMESTAMP,

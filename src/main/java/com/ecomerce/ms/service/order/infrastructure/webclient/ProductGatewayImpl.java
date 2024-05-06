@@ -15,14 +15,14 @@ public class ProductGatewayImpl implements ProductGateway {
     private final WebClient webClient;
 
     public ProductGatewayImpl(WebClient.Builder webClientBuilder) {
-        webClient = webClientBuilder.baseUrl("localhost:8088")
+        webClient = webClientBuilder.baseUrl("http://localhost:8081")
                 .build();
     }
 
     public List<Product> getProducts(List<UUID> productIds) {
         return Flux.fromIterable(productIds)
                 .flatMap(productId -> webClient.get()
-                        .uri("/api/inventory/products/{id}", productId)
+                        .uri("/inventory-service/api/products/{id}", productId)
                         .retrieve()
                         .bodyToMono(Product.class))
                 .collectList()

@@ -21,7 +21,7 @@ public class OrderEventHandler {
                 .setOrderId(event.getOrder().getId())
                 .setCustomerId(event.getOrder().getCustomerId())
                 .build();
-        orderCreatedTemplate.send("order.created", orderCreatedEvent);
+        orderCreatedTemplate.send("order.created", "test-key", orderCreatedEvent);
     }
 
     public Metadata buildMetadata() {

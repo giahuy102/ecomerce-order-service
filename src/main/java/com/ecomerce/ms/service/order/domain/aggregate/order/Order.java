@@ -23,6 +23,7 @@ import java.util.UUID;
 @Getter
 @Table(name = "orders", schema = "order_service")
 @Entity
+@Setter
 @Builder
 public class Order extends AggregateRoot<UUID> {
     @NotNull
