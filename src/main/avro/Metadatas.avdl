@@ -4,4 +4,15 @@ protocol Metadatas {
 		@logicalType("timestamp_ms")
 		long submitTime;
 	}
+
+	record SagaMetadata {
+		@logicalType("uuid")
+		string instanceId;
+
+		string stepKey;
+	}
+
+	enum SagaStepStatus {
+		SUCCEEDED, FAILED // Other states are managed by orchestration
+	}
 }

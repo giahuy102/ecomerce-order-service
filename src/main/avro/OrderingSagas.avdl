@@ -1,0 +1,96 @@
+@namespace("com.ecomerce.ms.service")
+protocol OrderingSagas {
+	import idl "Metadatas.avdl";
+
+	record Order {
+		@logicalType("uuid")
+		string orderId;
+
+		array<OrderItem> orderItems;
+	}
+
+	record OrderItem {
+		@logicalType("uuid")
+		string productId;
+
+		int quantity;
+
+		double price;
+
+		@logicalType("uuid")
+		string merchantUserId;
+	}
+
+	record OrderingSagaKey {
+		@logicalType("uuid")
+		string orderId;
+	}
+
+	record CustomerVerificationCommand {
+		Metadata metadata;
+
+		SagaMetadata sagaMetadata;
+
+		@logicalType("uuid")
+		string orderId;
+
+		@logicalType("uuid")
+		string customerId;
+	}
+
+	record CustomerVerificationReply {
+		Metadata metadata;
+
+		SagaMetadata sagaMetadata;
+
+		SagaStepStatus sagaStepStatus;
+	}
+
+	record InventoryProcessingCommand {
+		Metadata metadata;
+
+		SagaMetadata sagaMetadata;
+
+		Order order;
+	}
+
+	record InventoryProcessingReply {
+		Metadata metadata;
+
+		SagaMetadata sagaMetadata;
+
+		SagaStepStatus sagaStepStatus;
+	}
+
+	record PaymentProcessingCommand {
+		Metadata metadata;
+
+		SagaMetadata sagaMetadata;
+
+		Order order;
+	}
+
+	record PaymentProcessingReply {
+		Metadata metadata;
+
+		SagaMetadata sagaMetadata;
+
+		SagaStepStatus sagaStepStatus;
+	}
+
+	record DeliveryProcessingCommand {
+		Metadata metadata;
+
+		SagaMetadata sagaMetadata;
+
+		Order order;
+	}
+
+	record DeliveryProcessingReply {
+		Metadata metadata;
+
+		SagaMetadata sagaMetadata;
+
+		SagaStepStatus sagaStepStatus;
+	}
+}

@@ -4,8 +4,6 @@ CREATE TABLE order_statuses (
     color CHAR(7) UNIQUE NOT NULL,
     created_by_staff_id UUID,
     updated_by_staff_id UUID,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP,
     CONSTRAINT pk_order_status PRIMARY KEY(id)
 );
 
@@ -15,8 +13,6 @@ CREATE TABLE orders (
     order_status_id INTEGER,
     order_approved_at DATE,
     order_delivered_customer_date DATE,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP,
     CONSTRAINT pk_order PRIMARY KEY(id),
     CONSTRAINT fk_order_order_status
         FOREIGN KEY(order_status_id)
