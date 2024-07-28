@@ -1,9 +1,9 @@
 @namespace("com.ecomerce.ms.service")
 protocol Metadatas {
-	record Metadata {
-		@logicalType("timestamp_ms")
-		long submitTime;
-	}
+	//record Metadata {
+	//	@logicalType("timestamp_ms")
+	//	long submitTime;
+	//}
 
 	record SagaMetadata {
 		@logicalType("uuid")
@@ -12,7 +12,7 @@ protocol Metadatas {
 		string stepKey;
 	}
 
-	enum SagaStepStatus {
-		SUCCEEDED, FAILED // Other states are managed by orchestration
+	enum SagaStepStatusMessage {
+		SUCCEEDED, FAILED, COMPENSATED // Other states are managed by orchestration
 	}
 }

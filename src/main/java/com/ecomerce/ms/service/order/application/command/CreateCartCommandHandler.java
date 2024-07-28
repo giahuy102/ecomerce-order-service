@@ -11,17 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class CreateCartCommandHandler implements CommandHandler<CreateCartCommand> {
+public class CreateCartCommandHandler implements CommandHandler<CreateCartCommand, Void> {
 
     private final CartRepository cartRepository;
     private final CartFactory cartFactory;
 
     @Transactional
-    public void handle(CreateCartCommand createCartCommand) {
+    public Void handle(CreateCartCommand createCartCommand) {
         Cart cart = cartFactory.createFrom(createCartCommand.getCustomerId(), createCartCommand.getCartItems());
         cart.registerEvent(CartCreated.builder()
                 .cart(cart)
                 .build());
         cartRepository.save(cart);
+        return null;
     }
 }

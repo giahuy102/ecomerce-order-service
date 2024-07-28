@@ -2,14 +2,17 @@
 protocol OrderingSagas {
 	import idl "Metadatas.avdl";
 
-	record Order {
+	record OrderMessage {
 		@logicalType("uuid")
 		string orderId;
 
-		array<OrderItem> orderItems;
+		@logicalType("uuid")
+		string customerId;
+
+		array<OrderItemMessage> orderItems;
 	}
 
-	record OrderItem {
+	record OrderItemMessage {
 		@logicalType("uuid")
 		string productId;
 
@@ -27,8 +30,6 @@ protocol OrderingSagas {
 	}
 
 	record CustomerVerificationCommand {
-		Metadata metadata;
-
 		SagaMetadata sagaMetadata;
 
 		@logicalType("uuid")
@@ -39,58 +40,44 @@ protocol OrderingSagas {
 	}
 
 	record CustomerVerificationReply {
-		Metadata metadata;
-
 		SagaMetadata sagaMetadata;
 
-		SagaStepStatus sagaStepStatus;
+		SagaStepStatusMessage sagaStepStatus;
 	}
 
 	record InventoryProcessingCommand {
-		Metadata metadata;
-
 		SagaMetadata sagaMetadata;
 
-		Order order;
+		OrderMessage order;
 	}
 
 	record InventoryProcessingReply {
-		Metadata metadata;
-
 		SagaMetadata sagaMetadata;
 
-		SagaStepStatus sagaStepStatus;
+		SagaStepStatusMessage sagaStepStatus;
 	}
 
 	record PaymentProcessingCommand {
-		Metadata metadata;
-
 		SagaMetadata sagaMetadata;
 
-		Order order;
+		OrderMessage order;
 	}
 
 	record PaymentProcessingReply {
-		Metadata metadata;
-
 		SagaMetadata sagaMetadata;
 
-		SagaStepStatus sagaStepStatus;
+		SagaStepStatusMessage sagaStepStatus;
 	}
 
 	record DeliveryProcessingCommand {
-		Metadata metadata;
-
 		SagaMetadata sagaMetadata;
 
-		Order order;
+		OrderMessage order;
 	}
 
 	record DeliveryProcessingReply {
-		Metadata metadata;
-
 		SagaMetadata sagaMetadata;
 
-		SagaStepStatus sagaStepStatus;
+		SagaStepStatusMessage sagaStepStatus;
 	}
 }

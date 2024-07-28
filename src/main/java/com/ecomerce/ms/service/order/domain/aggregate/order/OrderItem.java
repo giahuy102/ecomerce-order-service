@@ -33,4 +33,7 @@ public class OrderItem extends LocalEntity<UUID> {
 
     @Column(name = "quantity")
     private Integer quantity;
+
+    @Column(name = "merchant_user_id")
+    private UUID merchantUserId;
 }

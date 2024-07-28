@@ -28,7 +28,7 @@ group = 'com.ecomerce.ms.service.order'
 version = '1.0.0-SNAPSHOT'
 
 java {
-	sourceCompatibility = '11'
+	sourceCompatibility = '17'
 }
 
 configurations {
@@ -42,7 +42,6 @@ ext {
 }
 
 avro {
-	stringType = 'CharSequence'
 	outputCharacterEncoding = 'UTF-8'
 }
 
