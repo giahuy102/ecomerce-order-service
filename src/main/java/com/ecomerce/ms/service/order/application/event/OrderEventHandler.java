@@ -14,6 +14,7 @@ public class OrderEventHandler {
 
     @EventListener
     public void onOrderCreatedEvent(OrderCreated event) {
+        System.out.println("Handle order created event");
         createOrderSaga.buildSagaInstance(event.getOrder());
     }
 }

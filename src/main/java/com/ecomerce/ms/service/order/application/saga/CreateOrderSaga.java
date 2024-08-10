@@ -9,6 +9,7 @@ import com.ecomerce.ms.service.order.domain.aggregate.order.Order;
 import com.huyle.ms.saga.entity.SagaInstance;
 import com.huyle.ms.saga.entity.SagaStep;
 import com.huyle.ms.saga.service.SagaProvider;
+import com.huyle.ms.saga.service.SagaStepProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -24,19 +25,20 @@ import static com.ecomerce.ms.service.order.domain.shared.Constants.CUSTOMER_VER
 @RequiredArgsConstructor
 public class CreateOrderSaga {
     private final SagaProvider sagaProvider;
+    private final SagaStepProvider sagaStepProvider;
 
     public void buildSagaInstance(Order order) {
-        sagaProvider.initSagaInstance(CREATE_ORDER_SAGA, buildSagaSteps(order));
+        UUID instanceId = UUID.randomUUID(); // Saga's instanceId does not exists when not saving to database
+        sagaProvider.initSagaInstance(instanceId, CREATE_ORDER_SAGA, buildSagaSteps(instanceId, order));
     }
 
-    private List<SagaStep> buildSagaSteps(Order order) {
+    private List<SagaStep> buildSagaSteps(UUID instanceId, Order order) {
         return SagaInstance.stepBuilder()
-                .step(new SagaStep(CUSTOMER_VERIFICATION_STEP, buildSagaKey(order.getId()), buildCustomerVerificationCommand(order), CUSTOMER_VERIFICATION_TOPIC, false))
+                .step(sagaStepProvider.initSagaStep(CUSTOMER_VERIFICATION_STEP, buildSagaKey(order.getId()), buildCustomerVerificationCommand(instanceId, order), CUSTOMER_VERIFICATION_TOPIC, false))
                 .build();
     }
 
-    private CustomerVerificationCommand buildCustomerVerificationCommand(Order order) {
-        UUID instanceId = UUID.randomUUID(); // Saga's instanceId does not exists when not saving to database
+    private CustomerVerificationCommand buildCustomerVerificationCommand(UUID instanceId, Order order) {
         return CustomerVerificationCommand.newBuilder()
                 .setSagaMetadata(buildSagaMetadata(instanceId, CUSTOMER_VERIFICATION_STEP))
                 .setCustomerId(order.getCustomerId())

@@ -24,8 +24,8 @@ public class CartController {
     @PostMapping("/api/carts")
     public Callable<ResponseEntity<String>> submitCart(@RequestBody CreateCartRequest request) {
         CreateCartCommand createCartCommand = cartMapper.toCreateCartCommand(request);
-        commandGateway.handle(createCartCommand);
         return () -> {
+            commandGateway.handle(createCartCommand);
             return ResponseEntity.ok("Success");
         };
     }
