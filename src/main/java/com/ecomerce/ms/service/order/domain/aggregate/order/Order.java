@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-@Table(name = "orders", schema = "order_service")
+@Table(name = "orders")
 @Entity
 @Setter
 @Builder

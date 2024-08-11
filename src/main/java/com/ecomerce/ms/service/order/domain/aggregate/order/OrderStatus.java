@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Table(name = "order_statuses", schema = "order_service")
+@Table(name = "order_statuses")
 @Entity
 public class OrderStatus extends LocalEntity<Integer> {
 

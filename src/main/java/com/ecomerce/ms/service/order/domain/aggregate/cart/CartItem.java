@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Table(name = "cart_items", schema = "order_service")
+@Table(name = "cart_items")
 @Entity
 @Builder
 public class CartItem extends LocalEntity<UUID> {
