@@ -27,6 +27,7 @@ public class OrderingSagaListener {
             case SUCCEEDED -> SagaStepStatus.SUCCEEDED;
             case FAILED -> SagaStepStatus.FAILED;
             case COMPENSATED -> SagaStepStatus.COMPENSATED;
+            case COMPENSATION_FAILED -> SagaStepStatus.COMPENSATION_FAILED;
             default -> throw new RuntimeException("Invalid kafka saga step status message");
         };
     }
