@@ -23,4 +23,6 @@ public class Constants {
     public static final String CREATE_ORDER_SAGA = "create_order_saga";
 
     public static final String CUSTOMER_VERIFICATION_STEP = "customer_verification_step";
+
+    public static final String INVENTORY_PROCESSING_STEP = "inventory_processing_step";
 }

@@ -23,8 +23,10 @@ public class CartFactory {
         List<Product> products = productGateway.getProducts(productIds);
         IntStream.range(0, cartItems.size())
                 .forEach(idx -> {
-                    Double productPrice = products.get(idx).getPriceUnit();
-                    cartItems.get(idx).setPrice(productPrice);
+                    var curProduct = products.get(idx);
+                    var curItem = cartItems.get(idx);
+                    curItem.setPrice(curProduct.getPriceUnit());
+                    curItem.setMerchantUserId(curProduct.getMerchantUserId());
                 });
         return Cart.builder()
                 .customerId(customerId)

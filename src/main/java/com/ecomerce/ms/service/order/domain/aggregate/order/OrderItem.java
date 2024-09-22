@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
@@ -34,6 +35,6 @@ public class OrderItem extends LocalEntity<UUID> {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "merchant_user_id")
+    @Transient
     private UUID merchantUserId;
 }

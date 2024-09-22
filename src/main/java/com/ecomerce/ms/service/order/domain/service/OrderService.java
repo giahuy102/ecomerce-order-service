@@ -42,6 +42,7 @@ public class OrderService implements DomainService {
                         .productId(item.getProductId())
                         .price(item.getPrice())
                         .quantity(item.getQuantity())
+                        .merchantUserId(item.getMerchantUserId())
                         .order(order)
                         .build())
                 .collect(Collectors.toList());

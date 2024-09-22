@@ -9,4 +9,5 @@ public class Product {
     private UUID productId;
     private Double priceUnit;
     private Integer quantity;
+    private UUID merchantUserId;
 }

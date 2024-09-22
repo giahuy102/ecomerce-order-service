@@ -1,6 +1,7 @@
 package com.ecomerce.ms.service.order.application.saga;
 
 import com.ecomerce.ms.service.CustomerVerificationCommand;
+import com.ecomerce.ms.service.InventoryProcessingCommand;
 import com.ecomerce.ms.service.OrderItemMessage;
 import com.ecomerce.ms.service.OrderMessage;
 import com.ecomerce.ms.service.OrderingSagaKey;
@@ -20,6 +21,8 @@ import java.util.stream.Collectors;
 import static com.ecomerce.ms.service.order.domain.shared.Constants.CREATE_ORDER_SAGA;
 import static com.ecomerce.ms.service.order.domain.shared.Constants.CUSTOMER_VERIFICATION_STEP;
 import static com.ecomerce.ms.service.order.domain.shared.Constants.CUSTOMER_VERIFICATION_TOPIC;
+import static com.ecomerce.ms.service.order.domain.shared.Constants.INVENTORY_PROCESSING_STEP;
+import static com.ecomerce.ms.service.order.domain.shared.Constants.INVENTORY_PROCESSING_TOPIC;
 
 @Component
 @RequiredArgsConstructor
@@ -33,8 +36,10 @@ public class CreateOrderSaga {
     }
 
     private List<SagaStep> buildSagaSteps(UUID instanceId, Order order) {
+        OrderingSagaKey sagaKey = buildSagaKey(order.getId());
         return SagaInstance.stepBuilder()
-                .step(sagaStepProvider.initSagaStep(CUSTOMER_VERIFICATION_STEP, buildSagaKey(order.getId()), buildCustomerVerificationCommand(instanceId, order), CUSTOMER_VERIFICATION_TOPIC, false))
+                .step(sagaStepProvider.initSagaStep(CUSTOMER_VERIFICATION_STEP, sagaKey, buildCustomerVerificationCommand(instanceId, order), CUSTOMER_VERIFICATION_TOPIC, false))
+                .step(sagaStepProvider.initSagaStep(INVENTORY_PROCESSING_STEP, sagaKey, buildInventoryProcessingCommand(instanceId, order), INVENTORY_PROCESSING_TOPIC,true))
                 .build();
     }
 
@@ -43,6 +48,13 @@ public class CreateOrderSaga {
                 .setSagaMetadata(buildSagaMetadata(instanceId, CUSTOMER_VERIFICATION_STEP))
                 .setCustomerId(order.getCustomerId())
                 .setOrderId(order.getId())
+                .build();
+    }
+
+    private InventoryProcessingCommand buildInventoryProcessingCommand(UUID instanceId, Order order) {
+        return InventoryProcessingCommand.newBuilder()
+                .setSagaMetadata(buildSagaMetadata(instanceId, INVENTORY_PROCESSING_STEP))
+                .setOrder(buildOrderMessage(order))
                 .build();
     }
 
